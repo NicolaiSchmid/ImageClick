@@ -1,0 +1,9 @@
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\bin\Debug\ImageClick.exe.config
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\bin\Debug\ImageClick.exe
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\bin\Debug\ImageClick.pdb
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.Properties.Resources.resources
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.csproj.GenerateResource.Cache
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.exe
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.pdb
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.ImageClickForm.resources
