@@ -22,6 +22,7 @@ namespace ImageClick
         int imageCountInt = 0;
         bool runButtonBool = true;
         bool revealButtonBool = true;
+        bool inGameBool = false;
         int count = 0;
 
         // used[lines];
@@ -58,6 +59,10 @@ namespace ImageClick
                     }
                     else
                     {
+                        fieldBool = new bool[difficultyInt, difficultyInt];
+                        used = new int[difficultyInt];
+                        resetArray();
+                        inGameBool = true;
                         image = Image.FromFile(picturesStringArray[0]);
                         runButtonBool = false;
                         startButton.Text = "Nächstes Bild";
@@ -73,14 +78,8 @@ namespace ImageClick
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
-            fieldBool = new bool[difficultyInt, difficultyInt];
-            used = new int[difficultyInt];
 
             //graphics = CreateGraphics();
-
-            resetArray();
-
-           
         }
 
         private void gameVoid(string fileString)
@@ -164,6 +163,7 @@ namespace ImageClick
                 if (imageCountInt == picturesStringArray.Length)
                 {
                     MessageBox.Show("Zuende");
+                    inGameBool = false;
                 }
                 else
                 { gameVoid(picturesStringArray[imageCountInt]); }
@@ -200,6 +200,7 @@ namespace ImageClick
                 if (imageCountInt == picturesStringArray.Length)
                 {
                     MessageBox.Show("Zuende");
+                    inGameBool = false;
                 }
                 else
                 { gameVoid(picturesStringArray[imageCountInt]); }
@@ -244,7 +245,6 @@ namespace ImageClick
                 {
                     
                 }
-
                 fieldBool[collumnInt, lineInt] = false;
                 count++;
             }
@@ -271,6 +271,40 @@ namespace ImageClick
                 revealButtonBool = false;
                 revealButton.Text = "Nächstes Bild";
                 revealEverythingButton.Enabled = false;
+            }
+        }
+
+        private void settingsButton_Click(object sender, EventArgs e)
+        {
+            settingsForm settingsform = new settingsForm();
+            if (settingsform.ShowDialog() == DialogResult.Yes)
+            {
+                Properties.Settings.Default.speedInt = settingsform.returnrevealSpeedInt;
+                Properties.Settings.Default.difficultyInt = settingsform.returndifficultyInt;
+                Properties.Settings.Default.lang = settingsform.returnlangString;
+                Properties.Settings.Default.Save();
+
+                difficultyInt = Properties.Settings.Default.difficultyInt;
+                timer1.Interval = Properties.Settings.Default.speedInt;
+
+                if (inGameBool)
+                {
+                    fieldBool = new bool[difficultyInt, difficultyInt];
+                    used = new int[difficultyInt];
+                    count = 0;
+                    revealButtonBool = true;
+                    revealButton.Text = "Aufdecken";
+                    revealEverythingButton.Enabled = true;
+                    resetArray();
+                    if (imageCountInt == picturesStringArray.Length)
+                    {
+                        MessageBox.Show("Zuende");
+                        inGameBool = false;
+                    }
+                    else
+                    { gameVoid(picturesStringArray[imageCountInt]); }
+                }
+                //Application.Restart();
             }
         }
     }

@@ -7,3 +7,4 @@ D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageCl
 D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.exe
 D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.pdb
 D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.ImageClickForm.resources
+D:\Documents\Visual Studio 2015\Projects\ImageClick\ImageClick\obj\Debug\ImageClick.settingsForm.resources

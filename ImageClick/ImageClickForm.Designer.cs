@@ -36,6 +36,7 @@
             this.revealButton = new System.Windows.Forms.Button();
             this.revealEverythingButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.settingsButton = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -88,17 +89,29 @@
             this.timer1.Interval = 300;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // settingsButton
+            // 
+            this.settingsButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsButton.Location = new System.Drawing.Point(772, 12);
+            this.settingsButton.Name = "settingsButton";
+            this.settingsButton.Size = new System.Drawing.Size(81, 31);
+            this.settingsButton.TabIndex = 4;
+            this.settingsButton.Text = "Einstellungen";
+            this.settingsButton.UseVisualStyleBackColor = true;
+            this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
+            // 
             // ImageClickForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(865, 508);
+            this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.revealEverythingButton);
             this.Controls.Add(this.revealButton);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.startButton);
             this.Name = "ImageClickForm";
-            this.Text = "Form1";
+            this.Text = "ImageClick";
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -114,6 +127,7 @@
         private System.Windows.Forms.Button revealButton;
         private System.Windows.Forms.Button revealEverythingButton;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button settingsButton;
     }
 }
 
