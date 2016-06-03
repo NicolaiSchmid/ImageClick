@@ -45,34 +45,39 @@ namespace ImageClick
 
         private void startButton_Click(object sender, EventArgs e)
         {
-            folderBrowserDialog1.ShowDialog();
+            DialogResult dialogResult = folderBrowserDialog1.ShowDialog();
             string pathString = folderBrowserDialog1.SelectedPath;
+
             // MessageBox.Show(pathString);
-            if (pathString != "")
+            if (dialogResult == DialogResult.OK)
             {
-                if (Directory.Exists(pathString))
+
+                if (pathString != "")
                 {
-                    picturesStringArray = Directory.GetFiles(pathString, "*.jpg");
-                    if (picturesStringArray.Length == 0)
+                    if (Directory.Exists(pathString))
                     {
-                        MessageBox.Show("Keine JPG Dateien im Verzeichnis vorhanden");
-                    }
-                    else
-                    {
-                        fieldBool = new bool[difficultyInt, difficultyInt];
-                        used = new int[difficultyInt];
-                        imageCountInt = 0;
-                        revealButton.Enabled = true;
-                        revealEverythingButton.Enabled = true;
-                        resetArray();
-                        inGameBool = true;
-                        image = Image.FromFile(picturesStringArray[0]);
-                        runButtonBool = false;
-                        startButton.Text = "Nächstes Bild";
-                        startButton.Enabled = false;
-                        revealButton.Visible = true;
-                        revealEverythingButton.Visible = true;
-                        gameVoid(picturesStringArray[imageCountInt]);
+                        picturesStringArray = Directory.GetFiles(pathString, "*.jpg");
+                        if (picturesStringArray.Length == 0)
+                        {
+                            MessageBox.Show("Keine JPG Dateien im Verzeichnis vorhanden");
+                        }
+                        else
+                        {
+                            fieldBool = new bool[difficultyInt, difficultyInt];
+                            used = new int[difficultyInt];
+                            imageCountInt = 0;
+                            revealButton.Enabled = true;
+                            revealEverythingButton.Enabled = true;
+                            resetArray();
+                            inGameBool = true;
+                            image = Image.FromFile(picturesStringArray[0]);
+                            runButtonBool = false;
+                            startButton.Text = "Nächstes Bild";
+                            startButton.Enabled = false;
+                            revealButton.Visible = true;
+                            revealEverythingButton.Visible = true;
+                            gameVoid(picturesStringArray[imageCountInt]);
+                        }
                     }
                 }
             }
@@ -81,6 +86,8 @@ namespace ImageClick
         private void Form1_Load(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Maximized;
+            difficultyInt = Properties.Settings.Default.difficultyInt;
+            timer1.Interval = Properties.Settings.Default.speedInt;
 
             //graphics = CreateGraphics();
         }
