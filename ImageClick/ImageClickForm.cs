@@ -61,6 +61,9 @@ namespace ImageClick
                     {
                         fieldBool = new bool[difficultyInt, difficultyInt];
                         used = new int[difficultyInt];
+                        imageCountInt = 0;
+                        revealButton.Enabled = true;
+                        revealEverythingButton.Enabled = true;
                         resetArray();
                         inGameBool = true;
                         image = Image.FromFile(picturesStringArray[0]);
@@ -162,8 +165,7 @@ namespace ImageClick
                 resetArray();
                 if (imageCountInt == picturesStringArray.Length)
                 {
-                    MessageBox.Show("Zuende");
-                    inGameBool = false;
+                    finished();
                 }
                 else
                 { gameVoid(picturesStringArray[imageCountInt]); }
@@ -199,8 +201,7 @@ namespace ImageClick
                 resetArray();
                 if (imageCountInt == picturesStringArray.Length)
                 {
-                    MessageBox.Show("Zuende");
-                    inGameBool = false;
+                    finished();
                 }
                 else
                 { gameVoid(picturesStringArray[imageCountInt]); }
@@ -298,8 +299,7 @@ namespace ImageClick
                     resetArray();
                     if (imageCountInt == picturesStringArray.Length)
                     {
-                        MessageBox.Show("Zuende");
-                        inGameBool = false;
+                        finished();
                     }
                     else
                     { gameVoid(picturesStringArray[imageCountInt]); }
@@ -307,5 +307,16 @@ namespace ImageClick
                 //Application.Restart();
             }
         }
+
+        private void finished()
+        {
+            MessageBox.Show("Zuende");
+            startButton.Enabled = true;
+            startButton.Text = "Spiel starten";
+            revealButton.Enabled = false;
+            revealEverythingButton.Enabled = false;
+            inGameBool = false;
+        }
+
     }
 }
