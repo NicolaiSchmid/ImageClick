@@ -1,6 +1,6 @@
 {
   "name": "Imageclick",
   "tagline": "",
-  "body": "### Welcome to ImageClick\r\nThis is a software for revealing Images panel after panel developed by @nicolaiimmanuelschmid. This could become a compatitive game for guessing whats the actual motive of the Image.\r\n### OpenBETA\r\nThe software is now in openBETA and I'm hoping to get a few bug reports.\r\n\r\n###Download\r\nYou can donwload the software itself as well as the sourcecode here on GitHub.\r\n\r\n###Contribution\r\nI am open for contributors, if anyone is interested.",
+  "body": "### Welcome to ImageClick\r\nThis is a software for revealing Images panel after panel developed by @nicolaiimmanuelschmid. This could become a compatitive game for guessing whats the actual motive of the Image.\r\n### OpenBETA\r\nThe software is now in openBETA and I'm hoping to get a few bug reports.\r\n\r\n###Download\r\nYou can <a href=\"https://github.com/nicolaiimmanuelschmid/ImageClick/blob/master/ImageClick/bin/Debug/ImageClick.exe?raw=true\" class=\"btn\">download</a> the software itself as well as the sourcecode here on GitHub.\r\n\r\n###Contribution\r\nI am open for contributors, if anyone is interested.",
   "note": "Don't delete this file! It's used internally to help with page regeneration."
 }
