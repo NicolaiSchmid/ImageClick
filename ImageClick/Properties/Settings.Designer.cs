@@ -49,7 +49,7 @@ namespace ImageClick.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Deutsch")]
+        [global::System.Configuration.DefaultSettingValueAttribute("English")]
         public string lang {
             get {
                 return ((string)(this["lang"]));

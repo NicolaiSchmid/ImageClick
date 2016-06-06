@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Xml;
 
 namespace ImageClick
 {
@@ -18,14 +19,14 @@ namespace ImageClick
         string[] picturesStringArray;
         int difficultyInt = 4;
         int paddingInt = 5;
-        bool clickBool = false;
         int imageCountInt = 0;
-        bool runButtonBool = true;
         bool revealButtonBool = true;
         bool inGameBool = false;
         int count = 0;
 
-        // used[lines];
+        //string[] textStringArray = { "Keine Bilder im Ordner gespeichert", "Nächstes Bild", "Aufdecken", "Zuende!", "Spiel starten", "Alles aufdecken", "Einstellungen" };
+        string[] textStringArray = new string[7];
+        
         int[] used;
         Random random = new Random();
 
@@ -34,14 +35,24 @@ namespace ImageClick
         // true means not guessed
         bool[,] fieldBool;
         Image image;
-        Graphics graphics;
-
-
 
         public ImageClickForm()
         {
             InitializeComponent();
         }
+
+        private void languageSet()
+        {
+            // Spiel starten
+            startButton.Text = textStringArray[4];
+            //Aufdecken
+            revealButton.Text = textStringArray[2];
+            // Alles aufdecken
+            revealEverythingButton.Text = textStringArray[5];
+            // Einstellungen
+            settingsButton.Text = textStringArray[6];
+        }
+
 
         private void startButton_Click(object sender, EventArgs e)
         {
@@ -59,7 +70,8 @@ namespace ImageClick
                         picturesStringArray = Directory.GetFiles(pathString, "*.jpg");
                         if (picturesStringArray.Length == 0)
                         {
-                            MessageBox.Show("Keine JPG Dateien im Verzeichnis vorhanden");
+                            //              Keine bilder im Ordner gespeichert
+                            MessageBox.Show(textStringArray[0]);
                         }
                         else
                         {
@@ -71,8 +83,8 @@ namespace ImageClick
                             resetArray();
                             inGameBool = true;
                             image = Image.FromFile(picturesStringArray[0]);
-                            runButtonBool = false;
-                            startButton.Text = "Nächstes Bild";
+                            //                  Nächstes Bild
+                            startButton.Text = textStringArray[1];
                             startButton.Enabled = false;
                             revealButton.Visible = true;
                             revealEverythingButton.Visible = true;
@@ -88,6 +100,8 @@ namespace ImageClick
             this.WindowState = FormWindowState.Maximized;
             difficultyInt = Properties.Settings.Default.difficultyInt;
             timer1.Interval = Properties.Settings.Default.speedInt;
+            readXml();
+            languageSet();
 
             //graphics = CreateGraphics();
         }
@@ -100,6 +114,33 @@ namespace ImageClick
             pictureBox1.Image = image;
         }
 
+        private void readXml()
+        {
+            bool rightLangBool = false;
+            int countInt = 0;
+            string[] lines = new string[5000];
+            string buffer;
+            XmlTextReader xmlReader = new XmlTextReader("language.xml");
+            while (xmlReader.Read())
+            {
+                if (rightLangBool)
+                {
+                    buffer = xmlReader.Value;
+                    buffer = buffer.Trim();
+                    if (buffer != "" && buffer != "\r\n")
+                    {
+                        if (countInt == 7)
+                        { break; }
+                        textStringArray[countInt] = xmlReader.Value;
+                        countInt++;
+                    }
+                }
+                string buffer2 = Properties.Settings.Default.lang;
+                if (xmlReader.Name == buffer2)
+                { rightLangBool = true; }
+            }
+            //System.IO.File.WriteAllLines(@"C:\Users\Nicolai\Desktop\WriteLines2.txt", lines);
+        }
 
         private void drawGrid(int width, int height, int diffi, int padding)
         {
@@ -167,7 +208,8 @@ namespace ImageClick
                 imageCountInt++;
                 count = 0;
                 revealButtonBool = true;
-                revealButton.Text = "Aufdecken";
+                //                  Aufdecken
+                revealButton.Text = textStringArray[2];
                 revealEverythingButton.Enabled = true;
                 resetArray();
                 if (imageCountInt == picturesStringArray.Length)
@@ -191,8 +233,6 @@ namespace ImageClick
             }
         }
 
-
-
         private void revealEverythingButton_Click(object sender, EventArgs e)
         {
             if (revealButtonBool)
@@ -204,7 +244,8 @@ namespace ImageClick
                 imageCountInt++;
                 count = 0;
                 revealButtonBool = true;
-                revealButton.Text = "Aufdecken";
+                //                  Aufdecken
+                revealButton.Text = textStringArray[2];
                 resetArray();
                 if (imageCountInt == picturesStringArray.Length)
                 {
@@ -221,11 +262,9 @@ namespace ImageClick
         {
             timer1.Enabled = true;
         }
-        
 
         private void reveal()
         {
-            bool buffer = true;
             int collumnInt = random.Next(0, difficultyInt - 1);
             int lineInt = random.Next(0, difficultyInt - 1);
 
@@ -244,7 +283,8 @@ namespace ImageClick
                     }
                     if (count == (difficultyInt * difficultyInt)-1)
                     {
-                        revealButton.Text = "Nächsten Bild";
+                        //                  Nächsten Bild
+                        revealButton.Text = textStringArray[1];
                         revealButtonBool = false;
                         revealEverythingButton.Enabled = false;
                     }
@@ -277,7 +317,8 @@ namespace ImageClick
             {
                 timer1.Enabled = false;
                 revealButtonBool = false;
-                revealButton.Text = "Nächstes Bild";
+                //                  Nächsten Bild
+                revealButton.Text = textStringArray[1];
                 revealEverythingButton.Enabled = false;
             }
         }
@@ -294,14 +335,15 @@ namespace ImageClick
 
                 difficultyInt = Properties.Settings.Default.difficultyInt;
                 timer1.Interval = Properties.Settings.Default.speedInt;
-
+                readXml();
                 if (inGameBool)
                 {
                     fieldBool = new bool[difficultyInt, difficultyInt];
                     used = new int[difficultyInt];
                     count = 0;
                     revealButtonBool = true;
-                    revealButton.Text = "Aufdecken";
+                    //                  Aufdecken
+                    revealButton.Text = textStringArray[2];
                     revealEverythingButton.Enabled = true;
                     resetArray();
                     if (imageCountInt == picturesStringArray.Length)
@@ -311,15 +353,22 @@ namespace ImageClick
                     else
                     { gameVoid(picturesStringArray[imageCountInt]); }
                 }
+
+                startButton.Text = textStringArray[4];
+                revealEverythingButton.Text = textStringArray[5];
+                settingsButton.Text = textStringArray[6];
+                revealButton.Text = textStringArray[2];
                 //Application.Restart();
             }
         }
 
         private void finished()
         {
-            MessageBox.Show("Zuende");
+            //               Zuende
+            MessageBox.Show(textStringArray[3]);
             startButton.Enabled = true;
-            startButton.Text = "Spiel starten";
+            //               Spiel starten
+            startButton.Text = textStringArray[4];
             revealButton.Enabled = false;
             revealEverythingButton.Enabled = false;
             inGameBool = false;

@@ -79,7 +79,7 @@
             this.revealButton.Name = "revealButton";
             this.revealButton.Size = new System.Drawing.Size(138, 31);
             this.revealButton.TabIndex = 2;
-            this.revealButton.Text = "Einzeln aufdecken";
+            this.revealButton.Text = "Aufdecken";
             this.revealButton.UseVisualStyleBackColor = false;
             this.revealButton.Visible = false;
             this.revealButton.Click += new System.EventHandler(this.revealButton_Click);

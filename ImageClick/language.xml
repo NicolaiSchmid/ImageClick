@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language>
+  <Deutsch>
+    <noImg>Kein Bilder im Ordner gespeichert</noImg>
+    <next>Nächstes Bild</next>
+    <reveal>Aufdecken</reveal>
+    <finished>Zuende!</finished>
+    <run>Spiel starten</run>
+    <revealAll>Alles aufdecken</revealAll>
+    <settings>Einstellungen</settings>
+  </Deutsch>
+  <English>
+    <noImg>No Pictures were found in the Folder</noImg>
+    <next>Next Pictures</next>
+    <reveal>Reveal</reveal>
+    <finished>Last Picture!</finished>
+    <run>Run game</run>
+    <revealAll>Reveal Everything</revealAll>
+    <settings>Settings</settings>
+  </English>
+</Language>

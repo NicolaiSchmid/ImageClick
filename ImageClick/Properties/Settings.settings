@@ -9,7 +9,7 @@
       <Value Profile="(Default)">400</Value>
     </Setting>
     <Setting Name="lang" Type="System.String" Scope="User">
-      <Value Profile="(Default)">Deutsch</Value>
+      <Value Profile="(Default)">English</Value>
     </Setting>
   </Settings>
 </SettingsFile>
