@@ -10,12 +10,14 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading;
 using System.Xml;
+using System.Net;
 
 namespace ImageClick
 {
     public partial class ImageClickForm : Form
     {
 
+        static string versionString = "0.1.0";
         string[] picturesStringArray;
         int difficultyInt = 4;
         int paddingInt = 5;
@@ -25,7 +27,7 @@ namespace ImageClick
         int count = 0;
 
         //string[] textStringArray = { "Keine Bilder im Ordner gespeichert", "Nächstes Bild", "Aufdecken", "Zuende!", "Spiel starten", "Alles aufdecken", "Einstellungen" };
-        string[] textStringArray = new string[7];
+        string[] textStringArray = new string[12];
         
         int[] used;
         Random random = new Random();
@@ -52,7 +54,6 @@ namespace ImageClick
             // Einstellungen
             settingsButton.Text = textStringArray[6];
         }
-
 
         private void startButton_Click(object sender, EventArgs e)
         {
@@ -106,8 +107,7 @@ namespace ImageClick
             timer1.Interval = Properties.Settings.Default.speedInt;
             readXml();
             languageSet();
-
-            //graphics = CreateGraphics();
+            checkUpdate();
         }
 
         private void gameVoid(string fileString)
@@ -135,7 +135,7 @@ namespace ImageClick
                     buffer = buffer.Trim();
                     if (buffer != "" && buffer != "\r\n")
                     {
-                        if (countInt == 7)
+                        if (countInt == 12)
                         { break; }
                         textStringArray[countInt] = xmlReader.Value;
                         countInt++;
@@ -378,6 +378,24 @@ namespace ImageClick
             revealButton.Enabled = false;
             revealEverythingButton.Enabled = false;
             inGameBool = false;
+        }
+
+        private void checkUpdate()
+        {
+            using (var client = new WebClient())
+            {
+                client.DownloadFile("https://raw.githubusercontent.com/nicolaiimmanuelschmid/ImageClick/master/README.md", "README.md");
+            }
+
+            string[] readMeString = File.ReadAllLines("README.md");
+            if (readMeString[1] != versionString)
+            {
+                DialogResult dialogResult = MessageBox.Show(textStringArray[10], textStringArray[11], MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                if (dialogResult == DialogResult.Yes)
+                {
+                    //update
+                }
+            }
         }
 
     }
