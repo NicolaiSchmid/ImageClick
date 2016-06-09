@@ -1,0 +1,47 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Language>
+  <Deutsch>
+    <noImg>Kein Bilder im Ordner gespeichert</noImg>
+    <next>Nächstes Bild</next>
+    <reveal>Aufdecken</reveal>
+    <finished>Zuende!</finished>
+    <run>Spiel starten</run>
+    <revealAll>Alles aufdecken</revealAll>
+    <settings>Einstellungen</settings>
+	<language>Sprache</language>
+	<difficulty>Schwierigkeit</difficulty>
+	<speed>Alles aufdecken - Geschwindigkeit</speed>
+	<update>Das Spiel ist veraltet. Jetzt updaten?</update>
+	<update2>Update</update2>
+  </Deutsch>
+  <English>
+    <noImg>No Pictures were found in the Folder</noImg>
+    <next>Next Picture</next>
+    <reveal>Reveal</reveal>
+    <finished>Last Picture!</finished>
+    <run>Run game</run>
+    <revealAll>Reveal Everything</revealAll>
+    <settings>Settings</settings>
+	<language>Language</language>
+	<difficulty>Difficulty</difficulty>
+	<speed>Reveal Everything - Speed</speed>
+	<update>The game is outdated. Update now?</update>
+	<update2>Update</update2>
+  </English>
+  <Espagnol>
+	<noImg>Ninguna foto encontrada en la carpeta</noImg>
+    <next>Próxima foto</next>
+    <reveal>Revelar</reveal>
+    <finished>Finalizado!</finished>
+    <run>Empezar el juego</run>
+    <revealAll>Revelar todo</revealAll>
+    <settings>Ajustes</settings>
+	<language>Idioma</language>
+	<difficulty>Difilcultad</difficulty>
+	<speed>Revelar todo - velocidad</speed>
+	<update>The game is outdated. Update now?</update>
+	<update2>Update</update2>
+  </Espagnol>
+  <Francais>
+  </Francais>
+</Language>
