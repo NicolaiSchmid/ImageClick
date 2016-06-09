@@ -88,6 +88,10 @@ namespace ImageClick
                             startButton.Enabled = false;
                             revealButton.Visible = true;
                             revealEverythingButton.Visible = true;
+
+                            // Configuring Reveal Label
+                            revealLabel.Visible = true;
+
                             gameVoid(picturesStringArray[imageCountInt]);
                         }
                     }
@@ -112,6 +116,8 @@ namespace ImageClick
             image = Image.FromFile(fileString);
             drawGrid(image.Width, image.Height, difficultyInt, paddingInt);
             pictureBox1.Image = image;
+            // Configuring Reveal Label
+            revealLabel.Text = count.ToString() + " / " + (difficultyInt * difficultyInt).ToString();
         }
 
         private void readXml()
@@ -217,7 +223,9 @@ namespace ImageClick
                     finished();
                 }
                 else
-                { gameVoid(picturesStringArray[imageCountInt]); }
+                {
+                    gameVoid(picturesStringArray[imageCountInt]);
+                }
 
             }
         }
@@ -310,8 +318,6 @@ namespace ImageClick
             if (count != difficultyInt * difficultyInt)
             {
                 reveal();
-                //Thread.Sleep(500);
-                //revealEverything();
             }
             else
             {

@@ -36,6 +36,7 @@
             this.revealEverythingButton = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.settingsButton = new System.Windows.Forms.Button();
+            this.revealLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,7 +65,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox1.Location = new System.Drawing.Point(12, 49);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(841, 447);
+            this.pictureBox1.Size = new System.Drawing.Size(841, 465);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -119,12 +120,25 @@
             this.settingsButton.UseVisualStyleBackColor = false;
             this.settingsButton.Click += new System.EventHandler(this.settingsButton_Click);
             // 
+            // revealLabel
+            // 
+            this.revealLabel.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.revealLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.revealLabel.Location = new System.Drawing.Point(0, 517);
+            this.revealLabel.Name = "revealLabel";
+            this.revealLabel.Size = new System.Drawing.Size(865, 31);
+            this.revealLabel.TabIndex = 5;
+            this.revealLabel.Text = "label1";
+            this.revealLabel.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.revealLabel.Visible = false;
+            // 
             // ImageClickForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(865, 508);
+            this.ClientSize = new System.Drawing.Size(865, 548);
+            this.Controls.Add(this.revealLabel);
             this.Controls.Add(this.settingsButton);
             this.Controls.Add(this.revealEverythingButton);
             this.Controls.Add(this.revealButton);
@@ -147,6 +161,7 @@
         private System.Windows.Forms.Button revealEverythingButton;
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Button settingsButton;
+        private System.Windows.Forms.Label revealLabel;
     }
 }
 

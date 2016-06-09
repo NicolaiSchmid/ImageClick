@@ -108,7 +108,7 @@ namespace ImageClick
             // Fill Speed from appSettings
             velocityTrackBar.Maximum = 1000;
             velocityTrackBar.Minimum = 1;
-            velocityTrackBar.Value = revealSpeedInt+1;
+            velocityTrackBar.Value = ((-1) * revealSpeedInt) + 1000;
             velocityValueLabel.Text = velocityTrackBar.Value.ToString();
         }
 
@@ -131,7 +131,7 @@ namespace ImageClick
 
         private void velocityTrackBar_Scroll(object sender, EventArgs e)
         {
-            revealSpeedInt = velocityTrackBar.Value;
+            revealSpeedInt = 1001 - velocityTrackBar.Value;
             velocityValueLabel.Text = velocityTrackBar.Value.ToString();
         }
 
