@@ -93,7 +93,7 @@
             this.revealEverythingButton.Font = new System.Drawing.Font("Verdana", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.revealEverythingButton.Location = new System.Drawing.Point(284, 12);
             this.revealEverythingButton.Name = "revealEverythingButton";
-            this.revealEverythingButton.Size = new System.Drawing.Size(124, 31);
+            this.revealEverythingButton.Size = new System.Drawing.Size(151, 31);
             this.revealEverythingButton.TabIndex = 3;
             this.revealEverythingButton.Text = "Alles aufdecken";
             this.revealEverythingButton.UseVisualStyleBackColor = false;

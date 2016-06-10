@@ -11,13 +11,14 @@ using System.IO;
 using System.Threading;
 using System.Xml;
 using System.Net;
+using System.IO.Compression;
 
 namespace ImageClick
 {
     public partial class ImageClickForm : Form
     {
 
-        static string versionString = "0.1.0";
+        static string versionString = "0.1.1";
         string[] picturesStringArray;
         int difficultyInt = 4;
         int paddingInt = 5;
@@ -107,7 +108,7 @@ namespace ImageClick
             timer1.Interval = Properties.Settings.Default.speedInt;
             readXml();
             languageSet();
-            checkUpdate();
+            //checkUpdate();
         }
 
         private void gameVoid(string fileString)
@@ -118,6 +119,8 @@ namespace ImageClick
             pictureBox1.Image = image;
             // Configuring Reveal Label
             revealLabel.Text = count.ToString() + " / " + (difficultyInt * difficultyInt).ToString();
+            this.Text = "ImageClick [" + (imageCountInt + 1).ToString() + " / " + picturesStringArray.Length.ToString() + "]";
+                
         }
 
         private void readXml()
@@ -382,21 +385,40 @@ namespace ImageClick
 
         private void checkUpdate()
         {
-            using (var client = new WebClient())
-            {
-                client.DownloadFile("https://raw.githubusercontent.com/nicolaiimmanuelschmid/ImageClick/master/README.md", "README.md");
-            }
-
-            string[] readMeString = File.ReadAllLines("README.md");
-            if (readMeString[1] != versionString)
-            {
-                DialogResult dialogResult = MessageBox.Show(textStringArray[10], textStringArray[11], MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
-                if (dialogResult == DialogResult.Yes)
+            try
+            { 
+                using (var client = new WebClient())
+                { client.DownloadFile("https://raw.githubusercontent.com/nicolaiimmanuelschmid/ImageClick/master/README.md", "README.md"); }
+                string[] readMeString = File.ReadAllLines("README.md");
+                if (readMeString[1] != versionString)
                 {
-                    //update
+                    DialogResult dialogResult = MessageBox.Show(textStringArray[10], textStringArray[11], MessageBoxButtons.YesNo, MessageBoxIcon.Exclamation);
+                    if (dialogResult == DialogResult.Yes)
+                    { update(); }
                 }
             }
+            catch (Exception e)
+            { }
         }
 
+        private void update()
+        {
+            using (var client = new WebClient())
+            {
+                try
+                {
+                    client.DownloadFile("https://github.com/nicolaiimmanuelschmid/ImageClick/archive/update.zip", "update.zip");
+                    string zipPath = "update.zip";
+                    string path = Directory.GetCurrentDirectory();
+                    Directory.Delete("ImageClick-update\\", true);
+                    
+                    ZipFile.ExtractToDirectory("update.zip", path);
+                    File.Delete("update.zip");
+                    System.Diagnostics.Process.Start("ImageClick-update\\update.bat");
+                    Application.Exit();
+                }
+                catch (Exception e) { }
+             }
+        }
     }
 }
