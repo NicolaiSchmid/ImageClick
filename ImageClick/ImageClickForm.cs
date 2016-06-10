@@ -77,6 +77,8 @@ namespace ImageClick
                         }
                         else
                         {
+                            Array.Sort(picturesStringArray);
+                            //Array.Sort(picturesStringArray, new AlphanumComparatorFast());
                             fieldBool = new bool[difficultyInt, difficultyInt];
                             used = new int[difficultyInt];
                             imageCountInt = 0;
@@ -120,7 +122,17 @@ namespace ImageClick
             // Configuring Reveal Label
             revealLabel.Text = count.ToString() + " / " + (difficultyInt * difficultyInt).ToString();
             this.Text = "ImageClick [" + (imageCountInt + 1).ToString() + " / " + picturesStringArray.Length.ToString() + "]";
-                
+            if (imageCountInt == 0)
+            {
+                previousButton.Visible = false;
+                nextButton.Visible = true;
+            }
+            else
+            { previousButton.Visible = true; }
+            if (imageCountInt == picturesStringArray.Length - 1)
+            { nextButton.Visible = false; }
+            else
+            { nextButton.Visible = true; }
         }
 
         private void readXml()
@@ -419,6 +431,20 @@ namespace ImageClick
                 }
                 catch (Exception e) { }
              }
+        }
+
+        private void nextButton_Click(object sender, EventArgs e)
+        {
+            imageCountInt++;
+            resetArray();
+            gameVoid(picturesStringArray[imageCountInt]);
+        }
+
+        private void previousButton_Click(object sender, EventArgs e)
+        {
+            imageCountInt--;
+            resetArray();
+            gameVoid(picturesStringArray[imageCountInt]);
         }
     }
 }
